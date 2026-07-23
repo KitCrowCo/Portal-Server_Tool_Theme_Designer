@@ -19,11 +19,11 @@ async def theme_designer(request: Request, auth=Depends(lambda: None)):
         admin_opts = f'<option value="/control-panel/theme/server-default">Server Default (all users, all modules)</option><optgroup label="Module Defaults">{mod_links}</optgroup>'
     user_mod_links = "".join(f'<option value="/control-panel/theme/module-user/{m}">{m}</option>' for m in modules)
     return HTMLResponse(f"""<div style="max-width:60rem;margin:0 auto;padding:1.5rem;">
-        <h2 style="margin-top:0;">Theme Designer</h2>
-        <select onchange="htmx.ajax('GET', this.value, {{target:'#td-panel', swap:'innerHTML'}})" style="background:var(--bg);border:var(--border-thick) solid var(--border);color:var(--text);padding:0.5rem;border-radius:var(--radius);width:100%;margin-bottom:1rem;">
-            <option value="">Select what to edit...</option>
-            {admin_opts}
-            <optgroup label="My Personal Theme"><option value="/control-panel/appearance">General (all modules)</option>{user_mod_links}</optgroup>
-        </select>
-        <div id="td-panel" class="glass" style="padding:1.5rem;"></div>
-    </div>""")
+                                <h2 style="margin-top:0;">Theme Designer</h2>
+                                <select onchange="htmx.ajax('GET', this.value, {{target:'#td-panel', swap:'innerHTML'}})" style="background:var(--bg); border:var(--border-thick) solid var(--border); color:var(--text); padding:0.5rem; border-radius:var(--radius); width:100%; margin-bottom:1rem;">
+                                    <option value="">Select what to edit...</option>
+                                    {admin_opts}
+                                    <optgroup label="My Personal Theme"><option value="/control-panel/appearance">General (all modules)</option>{user_mod_links}</optgroup>
+                                </select>
+                                <div id="td-panel" class="glass" style="padding:1.5rem;"></div>
+                            </div>""")
